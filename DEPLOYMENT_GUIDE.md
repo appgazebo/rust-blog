@@ -242,12 +242,13 @@ git add .
 git commit -m "Updated backend feature"
 git push
 ```
-1. GitHub Actions automatically builds the new binary and updates the container image.
-2. Tell Azure to pull the latest image revision:
+1. GitHub Actions automatically builds the new binary and pushes both `:latest` and a version tag.
+2. Tell Azure to pull the new image:
    ```bash
    az containerapp update \
      --name rust-blog \
-     --resource-group rg-rust-demo
+     --resource-group rg-rust-demo \
+     --image ghcr.io/<your-github-username>/<repo-name>:v2
    ```
 
 ---
